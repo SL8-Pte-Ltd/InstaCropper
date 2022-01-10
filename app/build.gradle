@@ -25,5 +25,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation 'com.fenchtose.nocropper:nocropper:0.3.0'
-    implementation project(':instacropper')
+//    implementation project(':instacropper')
+
+    implementation 'com.github.SL8-Pte-Ltd:InstaCropper:ig-crop' // slate library
+//     implementation 'com.yashoid:instacropper:1.2.0'
 }

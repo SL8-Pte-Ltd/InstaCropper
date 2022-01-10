@@ -11,7 +11,7 @@ ext {
     libraryDescription = 'A View for cropping images that is similar to Instagram\'s crop which allows a range of spect ratios. Also an Activity for cropping is included.'
 
     siteUrl = 'https://github.com/yasharpm/InstaCropper'
-    gitUrl = 'https://github.com/yasharpm/InstaCropper.git'
+    gitUrl = 'https://github.com/SL8-Pte-Ltd/InstaCropper.git'
 
     libraryVersion = '1.2.0'
 
