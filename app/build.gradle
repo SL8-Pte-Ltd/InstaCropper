@@ -26,6 +26,6 @@ dependencies {
 
     implementation 'com.fenchtose.nocropper:nocropper:0.3.0'
     // implementation project(':instacropper') // local library pointing
-    implementation 'com.github.SL8-Pte-Ltd:InstaCropper:1.2.0' // slate library
+    implementation 'com.github.SL8-Pte-Ltd:InstaCropper:s.1.2.0.1' // slate library
     // implementation 'com.yashoid:instacropper:1.2.0' // main library
 }
