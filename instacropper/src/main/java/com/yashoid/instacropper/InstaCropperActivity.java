@@ -225,6 +225,7 @@ public class InstaCropperActivity extends Activity {
     }
 
     private void onCancel() {
+        setResult(RESULT_CANCELED);
         finish();
     }
 
