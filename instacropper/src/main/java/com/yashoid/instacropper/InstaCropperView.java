@@ -726,16 +726,6 @@ public class InstaCropperView extends View {
             distanceX = - distanceX;
             distanceY = - distanceY;
 
-//            Log.e("INFO", "---onScroll");
-//            try {
-//                JSONObject json = new JSONObject();
-//                json.put("distanceX", distanceX);
-//                json.put("distanceY", distanceY);
-//                Log.e("INFO", "---menu onScroll scaled " + json.toString());
-//            } catch (Exception e) {
-//                Log.e("INFO", "---JSON onScroll error " + e.getMessage());
-//            }
-
             getDisplayDrawableBounds(mHelperRect);
 
             float overScrollX = measureOverScrollX(mHelperRect);
