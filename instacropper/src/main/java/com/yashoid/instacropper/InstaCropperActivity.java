@@ -199,17 +199,23 @@ public class InstaCropperActivity extends Activity {
         final float screenWidth = displayMetrics.widthPixels;
         final float imageHeight = mInstaCropper.getImageRawHeight();
         final float imageWidth = mInstaCropper.getImageRawWidth();
+        final float mWidth = mInstaCropper.getMinWidth();
+        final float mHeight = mInstaCropper.getMinHeight();
 
         float scale = 0;
 
         if(mInstaCropper.isPortrait()) {
-            // new width = screenWidth
-            float newHeight = screenWidth / imageWidth * imageHeight;
-            scale = newHeight / imageHeight;
+            if(imageWidth > mWidth) {
+                // new width = screenWidth
+                float newHeight = screenWidth / imageWidth * imageHeight;
+                scale = newHeight / imageHeight;
+            }
         } else {
-            // new height = screenWidth
-            float newWidth = screenWidth / imageHeight * imageWidth;
-            scale = newWidth / imageWidth;
+            if(imageHeight > mHeight) {
+                // new height = screenWidth
+                float newWidth = screenWidth / imageHeight * imageWidth;
+                scale = newWidth / imageWidth;
+            }
         }
 
         if(scaleType && scale > 0) {

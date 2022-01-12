@@ -558,17 +558,6 @@ public class InstaCropperView extends View {
         boolean imageSizeRatioIsValid = isImageSizeRatioValid(drawableSizeRatio);
 
 
-//        String a = "getDrawableScaleToFitWithValidRatioZ";
-//        try {
-//            Log.e("INFO", "--- " + a + " " + imageSizeRatioIsValid);
-//            JSONObject json = new JSONObject();
-//            json.put("drawableSizeRatio", drawableSizeRatio);
-//            json.put("imageSizeRatioIsValid", imageSizeRatioIsValid);
-//            Log.e("INFO", "--- " + a + " data " + json.toString());
-//        } catch (Exception e) {
-//            Log.e("INFO", "--- " + a + " error " + e.getMessage());
-//        }
-
         if (imageSizeRatioIsValid) {
             float viewRatio = (float) mWidth / (float) mHeight;
             float drawableRatio = (float) mImageRawWidth / (float) mImageRawHeight;
@@ -885,6 +874,15 @@ public class InstaCropperView extends View {
     private float getMinimumAllowedScale() {
         return getDrawableScaleToFitWithValidRatio();
     }
+
+    public float getMinWidth() {
+        return mWidth;
+    }
+
+    public float getMinHeight() {
+        return mHeight;
+    }
+
 
     private float applyOverScaleFix(float scale, float overScale) {
         if (overScale == 1) {
