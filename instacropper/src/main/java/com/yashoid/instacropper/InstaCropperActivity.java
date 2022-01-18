@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -183,6 +184,10 @@ public class InstaCropperActivity extends Activity {
     }
     */
 
+    private void showScaleWarning() {
+        Toast.makeText(getApplicationContext(), "Can't zoom low resolution image", Toast.LENGTH_LONG).show();
+    }
+
     private boolean onScaleClick() {
         if(!scaleType) {
             // fit center
@@ -209,12 +214,16 @@ public class InstaCropperActivity extends Activity {
                 // new width = screenWidth
                 float newHeight = screenWidth / imageWidth * imageHeight;
                 scale = newHeight / imageHeight;
+            } else {
+                showScaleWarning();
             }
         } else {
             if(imageHeight > mHeight) {
                 // new height = screenWidth
                 float newWidth = screenWidth / imageHeight * imageWidth;
                 scale = newWidth / imageWidth;
+            } else {
+                showScaleWarning();
             }
         }
 
