@@ -209,22 +209,21 @@ public class InstaCropperActivity extends Activity {
 
         float scale = 0;
 
-        if(mInstaCropper.isPortrait()) {
-            if(imageWidth > mWidth) {
-                // new width = screenWidth
-                float newHeight = screenWidth / imageWidth * imageHeight;
-                scale = newHeight / imageHeight;
-            } else {
-                showScaleWarning();
-            }
+        if (mInstaCropper.isPortrait()) {
+            // new width = screenWidth
+            float newHeight = screenWidth / imageWidth * imageHeight;
+            scale = newHeight / imageHeight;
+
         } else {
-            if(imageHeight > mHeight) {
-                // new height = screenWidth
-                float newWidth = screenWidth / imageHeight * imageWidth;
-                scale = newWidth / imageWidth;
-            } else {
-                showScaleWarning();
-            }
+            // new height = screenWidth
+            float newWidth = screenWidth / imageHeight * imageWidth;
+            scale = newWidth / imageWidth;
+        }
+
+        scale = Math.min(scale, mInstaCropper.getMaximumAllowedScale());
+        if(scale <= mInstaCropper.getMinimumAllowedScale()) {
+            scale = 0;
+            showScaleWarning();
         }
 
         if(scaleType && scale > 0) {
