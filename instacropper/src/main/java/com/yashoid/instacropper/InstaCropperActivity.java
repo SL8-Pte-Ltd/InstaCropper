@@ -187,9 +187,14 @@ public class InstaCropperActivity extends Activity {
     private Toast toast;
 
     private void showScaleWarning() {
-        if (toast == null || toast.getView().getWindowVisibility() != View.VISIBLE) {
+        try {
+            if(toast != null) {
+                toast.cancel();
+            }
             toast = Toast.makeText(getApplicationContext(), "Can't zoom low resolution image", Toast.LENGTH_SHORT);
             toast.show();
+        } catch (Exception e) {
+
         }
     }
 
