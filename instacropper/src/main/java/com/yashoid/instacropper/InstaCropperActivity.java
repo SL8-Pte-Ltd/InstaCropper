@@ -184,8 +184,13 @@ public class InstaCropperActivity extends Activity {
     }
     */
 
+    private Toast toast;
+
     private void showScaleWarning() {
-        Toast.makeText(getApplicationContext(), "Can't zoom low resolution image", Toast.LENGTH_LONG).show();
+        if (toast == null || toast.getView().getWindowVisibility() != View.VISIBLE) {
+            toast = Toast.makeText(getApplicationContext(), "Can't zoom low resolution image", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     private boolean onScaleClick() {
@@ -244,6 +249,13 @@ public class InstaCropperActivity extends Activity {
     }
 
     private boolean onCropClick() {
+        try {
+            if (toast != null && toast.getView().getWindowVisibility() == View.VISIBLE) {
+                toast.cancel();
+            }
+        } catch (Exception e) {
+
+        }
         mInstaCropper.crop(mWidthSpec, mHeightSpec, mBitmapCallback);
         return true;
     }
