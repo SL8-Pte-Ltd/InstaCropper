@@ -21,6 +21,8 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
+import org.json.JSONObject;
+
 import java.io.FileNotFoundException;
 
 /**
@@ -543,7 +545,7 @@ public class InstaCropperView extends View {
         return (float) mImageRawWidth / (float) mImageRawHeight;
     }
 
-    private void scaleDrawableToFitWithinViewWithValidRatio() {
+    public void scaleDrawableToFitWithinViewWithValidRatio() {
         float scale = getDrawableScaleToFitWithValidRatio();
 
         setDrawableScale(scale);
@@ -554,6 +556,7 @@ public class InstaCropperView extends View {
 
         float drawableSizeRatio = getImageSizeRatio();
         boolean imageSizeRatioIsValid = isImageSizeRatioValid(drawableSizeRatio);
+
 
         if (imageSizeRatioIsValid) {
             float viewRatio = (float) mWidth / (float) mHeight;
@@ -582,9 +585,10 @@ public class InstaCropperView extends View {
         return scale;
     }
 
-    private void setDrawableScale(float scale) {
-        mDrawableScale = scale;
 
+    public void setDrawableScale(float scale) {
+        mDrawableScale = scale;
+        placeDrawableInTheCenter();
         invalidate();
     }
 
@@ -593,6 +597,18 @@ public class InstaCropperView extends View {
         mDisplayDrawableTop = (mHeight - getDisplayDrawableHeight()) / 2;
 
         invalidate();
+    }
+
+    public boolean isPortrait() {
+        return  mImageRawWidth < mImageRawHeight;
+    }
+
+    public int getImageRawWidth() {
+        return  mImageRawWidth;
+    }
+
+    public int getImageRawHeight() {
+        return  mImageRawHeight;
     }
 
     private float getDisplayDrawableWidth() {
@@ -838,16 +854,24 @@ public class InstaCropperView extends View {
         }
     }
 
-    private float getMaximumAllowedScale() {
+    public float getMaximumAllowedScale() {
         float maximumAllowedWidth = mImageRawWidth;
         float maximumAllowedHeight = mImageRawHeight;
-
-        return Math.min(maximumAllowedWidth / (float) mWidth, maximumAllowedHeight / (float) mHeight);
+        return Math.max(Math.min(maximumAllowedWidth / (float) mWidth, maximumAllowedHeight / (float) mHeight), 1.5F);
     }
 
-    private float getMinimumAllowedScale() {
+    public float getMinimumAllowedScale() {
         return getDrawableScaleToFitWithValidRatio();
     }
+
+    public float getMinWidth() {
+        return mWidth;
+    }
+
+    public float getMinHeight() {
+        return mHeight;
+    }
+
 
     private float applyOverScaleFix(float scale, float overScale) {
         if (overScale == 1) {
